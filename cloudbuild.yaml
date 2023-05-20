@@ -1,0 +1,7 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/project-codex-features/flask-server', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/project-codex-features/flask-server']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['run', 'deploy', 'your-service', '--image', 'gcr.io/project-codex-features/flask-server', '--platform', 'managed', '--region', 'us-central1']
